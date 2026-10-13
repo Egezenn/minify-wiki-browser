@@ -1,4 +1,4 @@
-name: Release Mod
+name: Release Plugin
 
 on:
   push:
@@ -18,10 +18,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create mod archive
+      - name: Create plugin archive
         run: |
-          cd src
-          zip -r "../${{ github.event.repository.name }}.zip" . -x "*.git*"
+          cd plugin
+          zip -r "../${{ github.event.repository.name }}.zip" . -x "src/*" "src/**" "*.git*"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
